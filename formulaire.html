@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Formulaire</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+		<script>
+		$(function(){
+
+			//lors d'un submit sur le formulaire
+			$('form').submit(function(){
+				//on recupere le contenu des deux champs obligatoires
+				var mail = $('#email').val();
+				var texte = $('#message').val();
+
+				//on cree le pattern validant les emails
+				var pattern = /^[a-zA-Z._-]+@[a-zA-Z_-]+?\.[a-zA-Z]{2,6}$/;
+
+				//si l'un des deux est vide
+				if(mail== '' || texte == ''){
+
+					//on affiche le message
+					$('.infos').html('L\'email et le message sont obligatoires.').show();
+					//on bloque l'envoi du formulaire
+					return false;
+
+				//sinon si le mail ne match pas avec le pattern (ie : si le contenu du champ n'est pas un mail)
+				}else if(!pattern.test(mail)){
+					//on affiche le message d'erreur en changeant le texte
+					$('.infos').html('Vérifier votre adresse mail.').show();
+
+					return false;
+
+				}//fin du test
+
+			})//fin submit
+
+
+
+			//lorsque le contenu change dans un champ obligatoire
+			$('.required').change(function(){
+				//on recupere le contenu des deux champs obligatoires
+				var mail = $('#email').val();
+				var texte = $('#message').val();
+				//si les deux sont non-vides
+				if(mail != '' && texte != ''){
+					//on cache le message
+					$('.infos').hide();
+				} //fin du test
+
+			})//fin change
+
+		})//fin chargement
+		</script>
+	</head>
+	<body id="formulaire">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html" class="active">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Validation de formulaire</h1>
+		</header>
+		
+		<section class="main clearfix">
+			<form action="envoye.html" method="GET">
+				
+				<p class="infos">L'email et le message sont obligatoires.</p>
+				
+				<p>
+					<input type="text" name="nom" id="nom" placeholder="Nom" />
+					<input class="required" type="text" name="email" id="email" placeholder="Email" />
+					<textarea class="required" name="message" id="message" placeholder="Message"></textarea>
+					<input type="submit" value="Go!" />
+				</p>
+				
+			</form>
+		</section>
+	
+	</body>
+</html>

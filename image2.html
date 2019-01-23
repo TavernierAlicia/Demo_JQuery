@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Image hover</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<style>
+			figure img,
+			figure p{
+				transition: all .5s;
+			}
+			figure:hover img{
+				opacity: 0.2;
+			}
+			#image figure:hover p{
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body id="image">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html" class="active">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Image hover</h1>
+		</header>
+		
+		<section class="main clearfix">
+			<figure>
+				<img src="img/hover1.jpg" alt="hover 1" />
+				<p><a href="#">View more</a></p>
+			</figure>
+			<figure>
+				<img src="img/hover2.jpg" alt="hover 1" />
+				<p><a href="#">View more</a></p>
+			</figure>
+			<figure>
+				<img src="img/hover3.jpg" alt="hover 1" />
+				<p><a href="#">View more</a></p>
+			</figure>
+			<figure>
+				<img src="img/hover4.jpg" alt="hover 1" />
+				<p><a href="#">View more</a></p>
+			</figure>
+		</section>
+	
+	</body>
+</html>

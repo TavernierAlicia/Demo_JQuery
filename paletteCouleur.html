@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Palette de couleur</title>
+		<meta charset="UTF-8" />
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+		<script>
+		$(function(){
+
+			//click sur button
+			$('button').click(function(){
+				//on recupere la value du bouton clique
+				var color = $(this).attr('value');
+				//si le bouton etait pour du texte
+				if( $(this).hasClass('texte') ){
+					//on change la couleur du texte
+					$('p').css('color', color);
+					//on enleve la classe selected aux boutons du texte
+					$('.texte.selected').removeClass('selected');
+				}else{//sinon
+
+					//on change la couleur du fond
+					$('article').css('background', color);
+					//on enleve la classe selected aux boutons du fond
+					$('.fond.selected').removeClass('selected');
+				}//fin du test
+
+				//on ajoute la classe selected au bouton clique
+				$(this).addClass('selected');
+			})//fin click
+		})
+		</script>
+
+	</head>
+	<body id="palette">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html" class="active">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Couleurs</h1>
+		</header>
+
+		<section class="main clearfix">
+			<aside>
+				<h2>Texte</h2>
+				<button class="texte blue" value="blue"></button>
+				<button class="texte red" value="red"></button>
+				<button class="texte green" value="green"></button>
+				<button class="texte yellow" value="yellow"></button>
+				<button class="texte pink" value="pink"></button>
+				<button class="texte purple" value="purple"></button>
+				<button class="texte lime" value="lime"></button>
+				<button class="texte black selected" value="black"></button>
+				<button class="texte white" value="white"></button>
+				<h2>Fond</h2>
+				<button class="fond blue" value="blue"></button>
+				<button class="fond red" value="red"></button>
+				<button class="fond green" value="green"></button>
+				<button class="fond yellow" value="yellow"></button>
+				<button class="fond pink" value="pink"></button>
+				<button class="fond purple" value="purple"></button>
+				<button class="fond lime" value="lime"></button>
+				<button class="fond black" value="black"></button>
+				<button class="fond white selected" value="white"></button>
+			</aside>
+
+			<article>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat massa dictum sem semper ac tempor leo semper. Curabitur duc sed purus sed arcu varius convallis. Cras ut augue eros. Sed facilisis ante nisl, et posuere enim. Donec nisi justo, malesuada eu vehicula eget, mattis in augue.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat massa dictum sem semper ac tempor leo semper. Curabitur dui nulla, egestas id sodales sed, egestas nec nunc. Fusce semper diam at metus vehicula faucibusna turpis fringilla nulla. Praesent a venenatis quam. Aliquam ut nulla ac risus euismod consectetur sed a turpis. Donec at odio a orci imperdiet ullamcorper ut ac ligula. Donec sed purus sed arcu varius convallis. Cras ut augue eros. Sed facilisis ante nisl, et posuere enim. Donec nisi justo, malesuada eu vehicula eget, mattis in augue.</p>
+			</article>
+		</section>
+	</body>
+</html>

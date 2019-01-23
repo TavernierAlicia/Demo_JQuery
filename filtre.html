@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Filtre</title>
+		<meta charset="UTF-8" />
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+
+		<script>
+		$(function(){
+
+			//lors d'un click sur les liens de la liste
+			$('ul a').click(function(){
+
+				//on recupere le data category du lien selectionne
+				var categ = $(this).attr('data-category');
+
+				//si le lien etait 'Tous' (ie si la data category vaut 'all')
+				if(categ == 'all')
+
+					//on affiche toutes les images
+					$('figure').show();
+				//sinon
+				else{
+					//on cache toutes les figures
+					$('figure').hide();
+
+					//on affiche les figures qui ont la classe correspondant a la data
+					$('.'+categ).show();
+
+				}//fin du test
+
+				//on enleve la classe selected deja existante
+				$('.selected').removeClass('selected');
+
+				//on l'ajoute sur celui clique
+				$(this).addClass('selected');
+
+			})//fin click
+		})
+		</script>
+
+	</head>
+	<body id="filtre">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html" class="active">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Filtres</h1>
+		</header>
+
+		<section class="main clearfix">
+			<ul>
+				<li>Filtrer par :</li>
+				<li><a href="javascript:void(0);" data-category="all" class="selected">Tous</a></li>
+				<li><a href="javascript:void(0);" data-category="comic">Comics</a></li>
+				<li><a href="javascript:void(0);" data-category="francoBelge">Franco/belge</a></li>
+				<li><a href="javascript:void(0);" data-category="manga">Manga</a></li>
+				<li><a href="javascript:void(0);" data-category="noirBlanc">Noir/blanc</a></li>
+				<li><a href="javascript:void(0);" data-category="ligneClaire">Ligne claire</a></li>
+			</ul>
+			
+			<article>
+				<figure class="ligneClaire francoBelge">
+					<img alt="planche 1" src="img/planche1.jpg" width="300" height="411" />
+				</figure>
+				<figure class="comic">
+					<img alt="planche 2" src="img/planche2.jpg" width="300" height="411" />
+				</figure>
+				<figure class="francoBelge noirBlanc">
+					<img alt="planche 3" src="img/planche3.jpg" width="300" height="411" />
+				</figure>
+				<figure class="ligneClaire">
+					<img alt="planche 4" src="img/planche4.jpg" width="300" height="411" />
+				</figure>
+				<figure class="manga noirBlanc">
+					<img alt="planche 5" src="img/planche5.jpg" width="300" height="411" />
+				</figure>
+				<figure class="francoBelge">
+					<img alt="planche 6" src="img/planche6.jpg" width="300" height="411" />
+				</figure>
+			</article>
+		</section>
+	</body>
+</html>

@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Audio</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+
+		<script>
+		$(function(){
+			//on recupere l'element audio a qui on parle
+			var audio = $('audio').get(0);
+			console.log(audio);
+
+			//click sur play
+			$('#go').click(function(){
+				//lance la lecture de la piste
+				audio.play();
+				//cache play, affiche pause
+				$(this).hide();
+				$('#pause').css('display', 'inline-block');
+			})//fin play
+
+			//click sur pause
+			$('#pause').click(function(){
+				//stop la lecture de la piste
+				audio.pause();
+				//cache pause, affiche play
+				$(this).hide();
+				$('#go').css('display', 'inline-block');
+			})//fin pause
+
+			//click sur reset
+				//on remet la lecture a zero
+			//fin
+
+			//click sur boucle
+				//si la boucle est activee
+					//on arrete la boucle
+					//on enleve la classe
+				//sinon
+					//on met la boucle
+					//on ajoute la classe
+			//fin boucle
+
+
+			//select change
+				//on recupere la value du select
+				//on change la source de l'audio
+				//on lance la lecture
+				//on cache play, on affiche pause
+			//fin change
+
+
+			//lors de l'update du timing de lecture
+			audio.addEventListener('timeupdate', function(){
+				//on recupere la valeur du timing
+				var t = Math.floor(audio.currentTime);
+
+				var s = t % 60;
+				var m = (t-s)/60;
+
+				if(s < 10)
+					s = '0'+s;
+				//on modifie le label
+				$('label').html(m+':'+s);
+				//on modifie le progress 
+				$('progress').val(t);
+			})//fin time update
+
+			//lorsqu'on charge un nouveau media
+			audio.addEventListener('loadedmetadata', function(){
+				//on recupere le temps total de la piste
+				var time = audio.duration;
+				//on modifie le max
+				$('progress').attr('max', time);
+			})//fin chargement de media
+
+			//lorsqu'on fini une piste
+				//on recupere le texte et la value de l'element suivant dans la liste (attention pour le dernier)
+
+				//on modifie la source en consequence
+				//on lance la lecture
+				//on affiche le bon bouton
+			//fin de fin de piste
+		})
+		</script>
+	
+	</head>
+	<body id="audio">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html" class="active">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Playlist : Donjon de Naheulbeuk</h1>
+		</header>
+		
+		<section class="main clearfix">
+			
+			<article>
+				<h1>Bande annonce</h1>
+				
+				<p>
+				<label>0:00</label><progress value="0" max="100"></progress>
+				</p>
+				<a href="javascript:void(0);" id="go">play</a>
+				<a href="javascript:void(0);" id="pause">pause</a>
+				<a href="javascript:void(0);" class="" id="reset" title="remise a zero">reset</a>
+				<a href="javascript:void(0);" class="" id="boucle" title="boucle">boucle</a>
+				<audio src="audio/Donjon00.mp3">
+					<p>Your browser does not support the audio element.</p>
+				</audio>
+				
+				<p>Choix des épisodes : </p>
+				<select name="choix">
+					<option value="00">Bande annonce</option>
+					<option value="01">Episode 1</option>
+					<option value="02">Episode 2</option>
+					<option value="03">Episode 3</option>
+				</select>
+			</article>
+			
+		</section>
+	
+	</body>
+</html>

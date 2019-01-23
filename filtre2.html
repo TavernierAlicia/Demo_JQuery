@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>Filtre</title>
+		<meta charset="UTF-8" />
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+
+		<script>
+		$(function(){
+
+			//lors d'un click sur les liens de la liste
+			$('ul a').click(function(){
+
+				//on alterne la classe selected sur ce lien
+				$(this).toggleClass('selected');
+
+				//on recupere le data category du lien selectionne
+				var categ = $(this).attr('data-category');
+
+				//si il n'y plus aucun lien en selected
+				if( $('.selected').length == 0  )
+
+					//on met la classe selected sur toutes les categories (sauf all)
+					$('li + li + li a').addClass('selected');
+
+				//sinon si on a clique sur Tous
+				else if(categ == 'all'){
+					//on enleve la classe de Tous
+					$(this).removeClass('selected');
+
+					//on met la classe selected sur toutes les categories (sauf all)
+					$('li + li + li a').addClass('selected');
+
+				}//fin du test
+
+
+				//on cree une variable pour le selecteur (initialise a vide)
+				var select = '';
+
+				//on recupere la liste des liens qui sont selectionnes
+				var t = $('.selected');
+
+				//on lit tous les elements un a un pour recuperer le data-category correspondant, qu'on ajoute dans le selecteur
+				for(var i = 0; i < t.length; i++){
+					select += ', .'+$(t[i]).attr('data-category');
+				}
+				//on supprime les deux carateres en trop dans le select
+				select = select.substr(2); 
+
+				console.log(select);
+
+				//on cache toutes les figures
+				$('figure').hide();
+
+				//on affiche celles du selecteur
+				$(select).show();
+				
+			})//fin click
+		})
+		</script>
+
+	</head>
+	<body id="filtre">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html" class="active">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Filtres</h1>
+		</header>
+
+		<section class="main clearfix">
+			<ul>
+				<li>Filtrer par :</li>
+				<li><a href="javascript:void(0);" data-category="all">Tous</a></li>
+				<li><a href="javascript:void(0);" data-category="comic" class="selected">Comics</a></li>
+				<li><a href="javascript:void(0);" data-category="francoBelge" class="selected">Franco/belge</a></li>
+				<li><a href="javascript:void(0);" data-category="manga" class="selected">Manga</a></li>
+				<li><a href="javascript:void(0);" data-category="noirBlanc" class="selected">Noir/blanc</a></li>
+				<li><a href="javascript:void(0);" data-category="ligneClaire" class="selected">Ligne claire</a></li>
+			</ul>
+			
+			<article>
+				<figure class="ligneClaire francoBelge">
+					<img alt="planche 1" src="img/planche1.jpg" width="300" height="411" />
+				</figure>
+				<figure class="comic">
+					<img alt="planche 2" src="img/planche2.jpg" width="300" height="411" />
+				</figure>
+				<figure class="francoBelge noirBlanc">
+					<img alt="planche 3" src="img/planche3.jpg" width="300" height="411" />
+				</figure>
+				<figure class="ligneClaire">
+					<img alt="planche 4" src="img/planche4.jpg" width="300" height="411" />
+				</figure>
+				<figure class="manga noirBlanc">
+					<img alt="planche 5" src="img/planche5.jpg" width="300" height="411" />
+				</figure>
+				<figure class="francoBelge">
+					<img alt="planche 6" src="img/planche6.jpg" width="300" height="411" />
+				</figure>
+			</article>
+		</section>
+	</body>
+</html>

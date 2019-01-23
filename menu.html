@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Menu</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+
+		<script>
+		$(function(){
+			//lors d'un click sur les h2
+			$('h2').click(function(){
+
+				//s'il y a la classe open sur la balise cliquee
+				if($(this).hasClass('open')){
+
+					//on cache la sous liste
+					$(this).next().slideUp(400);
+					//on enleve la classe open
+					$(this).removeClass('open');
+				}else{//sinon
+
+					//on enleve les classes open et on ferme les sous listes ouvertes
+					$('.open').removeClass('open');
+					$('li ul').slideUp(400);
+
+					//on affiche la sous liste
+					$(this).next().slideDown(400);
+					//on ajoute la classe open
+					$(this).addClass('open');
+				}//fin du test
+
+			})//fin click
+		})
+		</script>
+	
+	</head>
+	<body id="menu">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html" class="active">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Menu</h1>
+		</header>
+		
+		<section class="main clearfix">
+			<ul>
+				<li>
+					<h2>Hermann</h2>
+					<ul>
+						<li>Bernard Prince</li>
+						<li>Comanche</li>
+						<li>Le diable des sept mers</li>
+						<li>Jeremiah</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Crisse</h2>
+					<ul>
+						<li>Atalante</li>
+						<li>Ishanti</li>
+						<li>Luuna</li>
+						<li>Marlysa</li>
+						<li>Sortilège</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Desberg</h2>
+					<ul>
+						<li>Cassio</li>
+						<li>Les Immortels</li>
+					</ul>
+				</li>
+				<li>
+					<h2>Dufaux</h2>
+					<ul>
+						<li>Le Bois des vierges</li>
+						<li>La complainte des landes perdues</li>
+						<li>Double masque</li>
+						<li>Giacomo C.</li>
+						<li>Rapaces</li>
+						<li>Santiag</li>
+					</ul>
+				</li>
+			</ul>
+		</section>
+	
+	</body>
+</html>

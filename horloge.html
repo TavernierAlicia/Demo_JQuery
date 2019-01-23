@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Horloge - [play]</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+
+		<script>
+		$(function(){
+
+			//on cree une fonction qui affiche l'heure a l'instant T
+			function heure(){
+
+				//on recupere l'heure de l'ordi
+				var date = new Date();
+
+				//on recupere les quantites de secondes, minutes et heures
+				var secondes = date.getSeconds();
+				var minutes = date.getMinutes();
+				var heures = date.getHours();
+
+				//on gere les zeros initiaux
+				if(secondes<10)
+					secondes = '0'+secondes;
+				if(minutes<10)
+					minutes = '0'+minutes;
+				if(heures<10)
+					heures = '0'+heures;
+
+				//on modifie les spans
+				$('#sec').html(secondes);
+				$('#min').html(minutes);
+				$('#heure').html(heures);
+			}//fin fonction
+
+			//on execute la fonction toutes les secondes
+			heure();
+			var auto = setInterval(heure, 1000);
+			
+			$('#go').hide();
+			$('#pause').css('display','inline-block');
+
+			//lors d'un click sur pause
+			$('#pause').click(function(){
+				//on stop l'intervalle
+				clearInterval(auto);
+				//on cache le bouton pause
+				$('#pause').hide();
+				//on affiche play
+				$('#go').css('display','inline-block');
+			})//fin pause
+
+
+			//lors d'un click sur play
+			$('#go').click(function(){
+				//on relance l'intervalle
+				heure();
+				auto = setInterval(heure, 1000);
+				//on cache le bouton play
+				$('#go').hide();
+				//on affiche pause
+				$('#pause').css('display','inline-block');
+			})//fin play
+
+		})//fin chargement
+		</script>
+	
+	</head>
+	<body id="horloge">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html" class="active">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Horloge automatique</h1>
+		</header>
+		
+		<section class="main clearfix">
+			<p>
+				<span id="heure">00</span>h <span id="min">00</span>m <span id="sec">00</span>s
+			</p>
+			<p>
+				<a href="javascript:void(0);" id="go">Go</a>
+				<a href="javascript:void(0);" id="pause">Pause</a>
+			</p>
+		</section>
+	
+	</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sideshow bd</title>
+		<meta charset="UTF-8" />
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+		<script>
+		//chargement de la page
+		$(function(){
+			//event click sur les lien du aside
+			$('aside a').click(function(){
+				//on recupere le href du lien clique
+				var address = $(this).attr('href');
+
+				//on s'en sert pour modifier la source de la grande image
+				$('#big img').attr('src', address);
+
+				//on recupere le title du lien clique
+				var title = $(this).attr('title');
+
+				//on remplace le contenu du figcaption
+				$('figcaption').html(title);
+
+				//on remplace le alt de la grande image
+				$('#big img').attr('alt', title);
+
+
+				//on met les bordures de tous les liens de miniatures en noir
+				$('aside a').css('border-color', '#000');
+
+				//on met les bordures du lien clique en rouge
+				$(this).css('border-color', '#f00');
+
+				//on empeche le lien de changer de page
+				return false;
+
+			})//fin du click
+
+		})//fin de chargement
+		</script>
+
+	</head>
+	<body id="bd">
+		<nav>
+			<a href="bd.html" class="active">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Galerie</h1>
+		</header>
+		
+		<section class="main clearfix">
+			<figure id="big">
+				<img src="img/sideshow/avengers.jpg" alt="Les avengers" />
+				<figcaption>Les avengers</figcaption>
+			</figure>
+			<aside class="clearfix">
+				<a href="img/sideshow/avengers.jpg" title="Les avengers">
+					<img src="img/sideshow/avengers_mini.jpg" alt="Les avengers" />
+				</a>
+				<a href="img/sideshow/blacksad.jpg" title="Blacksad">
+					<img src="img/sideshow/blacksad_mini.jpg" alt="Blacksad" />
+				</a>
+				<a href="img/sideshow/comanche.jpg" title="Comanche">
+					<img src="img/sideshow/comanche_mini.jpg" alt="Comanche" />
+				</a>
+				<a href="img/sideshow/decapeetdecrocs.jpg" title="De cape et de crocs">
+					<img src="img/sideshow/decapeetdecrocs_mini.jpg" alt="De cape et de crocs" />
+				</a>
+				<a href="img/sideshow/jeremiah.jpg" title="Jeremiah">
+					<img src="img/sideshow/jeremiah_mini.jpg" alt="Jeremiah" />
+				</a>
+				<a href="img/sideshow/saiyuki.jpg" title="Saiyuki">
+					<img src="img/sideshow/saiyuki_mini.jpg" alt="Saiyuki" />
+				</a>
+				<a href="img/sideshow/santiag.jpg" title="Santiag">
+					<img src="img/sideshow/santiag_mini.jpg" alt="Santiag" />
+				</a>
+				<a href="img/sideshow/spirou.jpg" title="Spirou et Fantasio">
+					<img src="img/sideshow/spirou_mini.jpg" alt="Spirou et Fantasio" />
+				</a>
+				<a href="img/sideshow/trollsdetroy.jpg" title="Trolls de Troy">
+					<img src="img/sideshow/trollsdetroy_mini.jpg" alt="Trolls de Troy" />
+				</a>
+				<a href="img/sideshow/xiii.jpg" title="XIII">
+					<img src="img/sideshow/xiii_mini.jpg" alt="XIII" />
+				</a>
+			</aside>
+		</section>
+	</body>
+</html>

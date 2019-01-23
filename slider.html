@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Slider</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+		<script>
+		$(function(){
+
+			//on stocke : le nombre total d'images, la taille des images, le numero actuel, le temps entre deux slides
+			var total = $('figure').length;  //6;
+			var size = 700;
+			var n = 1;
+			var time = 2500;
+
+			//on cree une fonction qui permet de passer a l'image suivante
+			function slide(){
+
+				//on incremente le numero actuel
+				n++;
+
+				//si on a depasse le nombre total, on retourne sur la premiere
+				if(n > total)
+					n = 1;
+
+				//on calcule la nouvelle position correspondante
+				var pLeft = -(n-1)*size;
+				
+				//on anime la div vers cette nouvelle position
+				$('div').animate({'left' : pLeft+'px'}, time/4)
+
+			}//fin fonction
+
+
+			//on execute la fonction a intervalle regulier
+			setInterval(slide, time);
+
+		})
+		</script>
+	
+	</head>
+	<body id="slider">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html" class="active">Slider simple</a>
+			<a href="slider-complexe.html">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Slider</h1>
+		</header>
+		
+		<section>
+			<article>
+				<div>
+					<figure>
+						<img alt="slider 1" src="img/slider1.jpg" />
+						<figcaption>L'Epée d'Ardenois</figcaption>
+					</figure>
+					<figure>
+						<img alt="slider 2" src="img/slider2.jpg" />
+						<figcaption>Les Druides</figcaption>
+					</figure>
+					<figure>
+						<img alt="slider 3" src="img/slider3.jpg" />
+						<figcaption>Le Scorpion</figcaption>
+					</figure>
+					<figure>
+						<img alt="slider 4" src="img/slider4.jpg" />
+						<figcaption>Halloween Blues</figcaption>
+					</figure>
+					<figure>
+						<img alt="slider 5" src="img/slider5.jpg" />
+						<figcaption>Wisher</figcaption>
+					</figure>
+					<figure>
+						<img alt="slider 6" src="img/slider6.jpg" />
+						<figcaption>Doucle Masque</figcaption>
+					</figure>
+				</div>
+			</article>
+		</section>
+	
+	</body>
+</html>

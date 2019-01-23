@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Slider complexe</title>
+		
+		<link href="css/reset.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		
+		<script src="js/jquery.js"></script>
+
+		<script>
+		$(function(){
+
+			//variable pour numero actuel, le numero de l'image d'avant, nombre total d'image, temps entre images et celle de l'intervalle
+			var n = 1;
+			var total = $('figure').length;
+			var old = total;
+			var time = 2500;
+			var auto;
+
+			//on cree une fonction qui passe a l'image suivante
+			function slide(sens){
+
+				//on modifie le numero de l'image d'avant
+				old = n;
+				//on incremente l'image actuelle
+				n = n + sens;
+				//si on a depasse le nombre total
+				if(n> total)
+					//on revient a la premiere
+					n=1;
+				//si on est a zero
+				if(n == 0)
+					n = total;
+
+				//on met toutes les figures sur le zindex 1
+				$('figure').css('z-index', '1');
+				//on met la figure d'avant sur zindex 2
+				$('figure:nth-child('+old+')').css('z-index', '2');
+				//on met la figure actuelle sur zindex 3 avec opacite 0
+				$('figure:nth-child('+n+')').css({'z-index':'3','opacity':'0'});
+
+				//on anime l'opacite de la figure actuelle
+				$('figure:nth-child('+n+')').animate({'opacity':'1'}, time/4);
+
+			}//fin fonction
+
+
+			//on lance l'intervalle de fonction (dans une variable)
+			auto = setInterval(function(){  slide(1);  }, time);
+
+			//lors d'un click sur pause
+			$('#pause').click(function(){
+				//on stop l'intervalle
+				clearInterval(auto);
+				//on inverse les boutons
+				$(this).hide();
+				$('#go').css('display', 'inline-block');
+			})//fin pause
+
+
+			//lors d'un click sur play
+			$('#go').click(function(){
+				//on relance l'intervalle
+				slide(1);
+				auto = setInterval(function(){  slide(1);  }, time);
+				//on inverse les boutons
+				$(this).hide();
+				$('#pause').css('display', 'inline-block');
+			})//fin play
+
+
+			//lors d'un click sur next
+			$('#next').click(function(){
+				//on stop l'interval
+				clearInterval(auto);
+				//on change d'image
+				slide(1);
+				//on relance l'intervalle
+				auto = setInterval(function(){ slide(1)}, time);
+				$('#go').hide();
+				$('#pause').css('display', 'inline-block');
+			})//fin next
+
+			//lors d'un click sur prev
+			$('#prev').click(function(){
+				//on stop l'interval
+				clearInterval(auto);
+				//on change d'image
+				slide(-1);
+				//on relance l'intervalle
+				auto = setInterval(function(){ slide(1)}, time);
+				$('#go').hide();
+				$('#pause').css('display', 'inline-block');
+			})//fin prev
+
+		})
+		</script>
+	
+	</head>
+	<body id="slider2">
+		<nav>
+			<a href="bd.html">Galerie BD</a>
+			<a href="paletteCouleur.html">Palette de couleur</a>
+			<a href="horloge.html">Horloge</a>
+			<a href="formulaire.html">Formulaire</a>
+			<a href="image.html">Image hover</a>
+			<a href="menu.html">Menu</a>
+			<a href="filtre.html">Filtre</a>
+			<a href="slider.html">Slider simple</a>
+			<a href="slider-complexe.html" class="active">Slider complexe</a>
+			<a href="audio.html">Playlist audio</a>
+		</nav>
+		<header>
+			<h1>Slider complexe</h1>
+		</header>
+		
+		<section>
+			<article>
+				<figure>
+					<img alt="slider 1" src="img/slider11.jpg" />
+					<figcaption>Le petit Spirou</figcaption>
+				</figure>
+				<figure>
+					<img alt="slider 2" src="img/slider12.jpg" />
+					<figcaption>Trolls de Troy</figcaption>
+				</figure>
+				<figure>
+					<img alt="slider 3" src="img/slider13.jpg" />
+					<figcaption>Dieu n'a pas réponse à tout</figcaption>
+				</figure>
+				<figure>
+					<img alt="slider 4" src="img/slider14.jpg" />
+					<figcaption>Les petits hommes</figcaption>
+				</figure>
+				<figure>
+					<img alt="slider 5" src="img/slider15.jpg" />
+					<figcaption>Les Dalton</figcaption>
+				</figure>
+				<figure>
+					<img alt="slider 6" src="img/slider16.jpg" />
+					<figcaption>Les Schtroumpfs</figcaption>
+				</figure>
+				<a href="javascript:void(0);" id="go">Go</a>
+				<a href="javascript:void(0);" id="pause">Pause</a>
+				<a href="javascript:void(0);" id="next">Next</a>
+				<a href="javascript:void(0);" id="prev">Prev</a>
+			</article>
+		</section>
+	
+	</body>
+</html>
